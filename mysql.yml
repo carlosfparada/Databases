@@ -14,13 +14,13 @@
 
     - name: Create a new database with name 'bobdata'
       community.mysql.mysql_db:
-        name: bobdata
+        name: db1
         state: present
         login_unix_socket: /run/mysqld/mysqld.sock
 
     - name: Create new databases with names 'foo' and 'bar'
       community.mysql.mysql_db:
         name:
-          - foo
-          - bar
+          - db1
+          - db2
         state: present
