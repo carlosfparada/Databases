@@ -4,14 +4,14 @@
   tasks:
     - name: Install MySQL
       ansible.builtin.yum:
-         name:
-            - mysql 
-            #- mysql-server
-            # - mysql-client 
-            # - python3-mysqldb
-            # - libmysqlclient-dev
-         become: true
-         state: latest
+        name:
+          - mysql 
+          #- mysql-server
+          # - mysql-client 
+          # - python3-mysqldb
+          # - libmysqlclient-dev
+        state: latest
+      become: true
 
     - name: Start MySQL service
       ansible.builtin.service:
