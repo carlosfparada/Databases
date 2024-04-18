@@ -13,7 +13,4 @@ users:
     host: '%'
 
 databases:
-  - name: "dbuser"
-    password: "dbpass"
-    priv: '*.*:ALL'
-    host: '%'
+  - db1
