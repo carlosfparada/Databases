@@ -3,7 +3,7 @@
   hosts: dbserver
   tasks:
     - name: Install MySQL
-      ansible.builtin.dnf:
+      ansible.builtin.yum:
          name: 
             - mysql-server
             - mysql-client 
