@@ -19,7 +19,7 @@
       become: true
 
     - name: Creating MySQL user
-      mysql_user:
+      community.mysql.mysql_user:
         name: "dbuser"
         password: "dbpass"
         priv: '*.*:ALL'
