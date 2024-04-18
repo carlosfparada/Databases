@@ -6,9 +6,9 @@
       ansible.builtin.yum:
          name: 
             - mysql-server
-            - mysql-client 
-            - python3-mysqldb
-            - libmysqlclient-dev
+            # - mysql-client 
+            # - python3-mysqldb
+            # - libmysqlclient-dev
          state: latest
 
     - name: Start MySQL service
