@@ -4,12 +4,17 @@
   tasks:
     - name: Install MySQL
       ansible.builtin.dnf:
-         name: mysql
+         name: 
+            - mysql-server
+            - mysql-client 
+            - python3-mysqldb
+            - libmysqlclient-dev
          state: latest
 
     - name: Start MySQL
       ansible.builtin.service:
          name: mysql
+         state: started
          enabled: yes
 
     - name: Create a new database with name 'bobdata'
@@ -18,7 +23,7 @@
         state: present
         login_unix_socket: /run/mysqld/mysqld.sock
 
-    - name: Create new databases with names 'foo' and 'bar'
+    - name: Create new databases
       community.mysql.mysql_db:
         name:
           - db1
