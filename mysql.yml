@@ -18,6 +18,7 @@
          name: mysql
          state: started
          enabled: yes
+      become: true
 
     - name: Create a new database
       community.mysql.mysql_db:
