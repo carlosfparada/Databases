@@ -5,8 +5,8 @@
     - name: Install MySQL
       ansible.builtin.dnf:
         name:
+          - mysql-server
           - mysql
-          - mysql-client 
         state: latest
       become: true
 
