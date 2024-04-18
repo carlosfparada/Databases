@@ -22,9 +22,9 @@
     - name: Create MySQL users
       community.mysql.mysql_user:
         name: "{{ item.name }}"
-        password: "{{ item.name }}"
-        priv: "{{ item.name }}"
-        host: "{{ item.name }}"
+        password: "{{ item.password }}"
+        priv: "{{ item.priv }}"
+        host: "{{ item.host }}"
         state: present
       loop: "{{ users }}"
       notify: Restart MySQL services
