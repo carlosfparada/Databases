@@ -10,6 +10,7 @@
             # - mysql-client 
             # - python3-mysqldb
             # - libmysqlclient-dev
+         become: true
          state: latest
 
     - name: Start MySQL service
