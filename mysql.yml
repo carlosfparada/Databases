@@ -5,7 +5,7 @@
     - name: Install MySQL
       ansible.builtin.yum:
         name:
-          - mysql 
+          - mariadb
           #- mysql-server
           # - mysql-client 
           # - python3-mysqldb
@@ -15,7 +15,7 @@
 
     - name: Start MySQL service
       ansible.builtin.service:
-         name: mysqld
+         name: mariadb
          #state: started
          enabled: yes
       become: true
