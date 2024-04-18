@@ -11,21 +11,13 @@
             - libmysqlclient-dev
          state: latest
 
-    - name: Start MySQL
+    - name: Start MySQL service
       ansible.builtin.service:
          name: mysql
          state: started
          enabled: yes
 
-    - name: Create a new database with name 'bobdata'
+    - name: Create a new database
       community.mysql.mysql_db:
         name: db1
-        state: present
-        login_unix_socket: /run/mysqld/mysqld.sock
-
-    - name: Create new databases
-      community.mysql.mysql_db:
-        name:
-          - db1
-          - db2
         state: present
