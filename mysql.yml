@@ -2,6 +2,7 @@
 - name: MySQL database
   hosts: dbserver
   tasks:
+
     - name: Install MySQL
       ansible.builtin.dnf:
         name:
@@ -31,3 +32,9 @@
         name: db1
         state: present
 
+  handlers:
+  
+    - name: Restart mysql
+      service:
+        name: mysql
+        state: restarted
