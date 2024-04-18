@@ -4,8 +4,9 @@
   tasks:
     - name: Install MySQL
       ansible.builtin.yum:
-         name: 
-            - mysql-server
+         name:
+            - mysql 
+            #- mysql-server
             # - mysql-client 
             # - python3-mysqldb
             # - libmysqlclient-dev
