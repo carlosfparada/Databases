@@ -1,40 +1,44 @@
 ---
 - name: MySQL database
   hosts: dbserver
+  vars_files:
+    - vars.yml
   tasks:
 
-    - name: Install MySQL
+    - name: Install MySQL packages
       ansible.builtin.dnf:
-        name:
-          - mysql-server
-          - mysql
-          - python3-PyMySQL
+        name: "{{ packages }}"
         state: latest
       become: true
 
-    - name: Start MySQL service
+    - name: Start MySQL services
       ansible.builtin.service:
-         name: mysqld
-         state: started
-         enabled: yes
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+      loop: "{{ services }}"
       become: true
 
-    - name: Create MySQL user
+    - name: Create MySQL users
       community.mysql.mysql_user:
-        name: "dbuser"
-        password: "dbpass"
-        priv: '*.*:ALL'
-        host: '%'
+        name: "{{ item.name }}"
+        password: "{{ item.name }}"
+        priv: "{{ item.name }}"
+        host: "{{ item.name }}"
+        state: present
+      loop: "{{ users }}"
+      notify: Restart MySQL services
+
+    - name: Create MySQL databases
+      community.mysql.mysql_db:
+        name: "{{ databases }}"
         state: present
 
-    - name: Create MySQL database
-      community.mysql.mysql_db:
-        name: db1
-        state: present
 
   handlers:
-  
-    - name: Restart mysql
+
+    - name: Restart MySQL services
       service:
-        name: mysql
+        name: "{{ item }}"
         state: restarted
+      loop: "{{ services }}"

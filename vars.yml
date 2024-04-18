@@ -1,0 +1,19 @@
+packages:
+  - mysql-server
+  - mysql
+  - python3-PyMySQL
+
+services: 
+  - mysqld
+
+users:
+  - name: "dbuser"
+    password: "dbpass"
+    priv: '*.*:ALL'
+    host: '%'
+
+databases:
+  - name: "dbuser"
+    password: "dbpass"
+    priv: '*.*:ALL'
+    host: '%'
