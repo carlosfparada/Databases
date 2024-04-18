@@ -1,6 +1,6 @@
 ---
 - name: MySQL database
-  hosts: server
+  hosts: dbserver
   tasks:
     - name: Install MySQL
       ansible.builtin.dnf:
