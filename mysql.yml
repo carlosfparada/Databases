@@ -7,7 +7,7 @@
         name:
           - mysql-server
           - mysql
-          - python3-mysqldb
+          - python3-pymysql
         state: latest
       become: true
 
