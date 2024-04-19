@@ -17,3 +17,9 @@
       community.mysql.mysql_replication:
         mode: changeprimary
         primary_host: "{{ ansible_host }}"
+
+    - name: Select MySQL tables
+      community.mysql.mysql_query:
+        login_db: "{{ sql.dbname }}"
+        query: "{{ item }}"
+      loop: "{{ sql.select }}"
