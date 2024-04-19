@@ -17,8 +17,8 @@
     - name: Check Replication MySQL databases
       community.mysql.mysql_replication:
         mode: getreplica
-        login_host: "{{ ansible_host }}"
-        login_port: 3306
+        # login_host: "{{ ansible_host }}"
+        # login_port: 3306
 
     - name: Change Primary MySQL databases
       community.mysql.mysql_replication:
