@@ -9,6 +9,11 @@
       community.mysql.mysql_replication:
         mode: getprimary
 
+    - name: Start MariaDB replica with connection name primary-1
+      community.mysql.mysql_replication:
+        mode: startreplica
+        connection_name: primary-1
+
     - name: Check Replication MySQL databases
       community.mysql.mysql_replication:
         mode: getreplica
