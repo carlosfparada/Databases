@@ -35,6 +35,13 @@
         name: "{{ databases }}"
         state: present
 
+    - name: Set variables MySQL databases
+      community.mysql.mysql_variables:
+        variable: "binlog_expire_logs_seconds"
+        value: "{{ '1w' | community.general.to_seconds | int }}"
+        mode: persist
+      become: true
+  
     - name: Get Info MySQL databases
       community.mysql.mysql_info:
 
