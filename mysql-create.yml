@@ -37,8 +37,6 @@
 
     - name: Get Info MySQL databases
       community.mysql.mysql_info:
-        # login_user: mysuperuser
-        # login_password: mysuperpass
 
   handlers:
 
