@@ -12,3 +12,9 @@
         #target: all
         target: "{{ dump_file }}"
 
+    - name: Import MySQL databases
+      community.mysql.mysql_db:
+        name: "{{ databases }}"
+        state: import
+        #target: all
+        target: "{{ dump_file }}"
