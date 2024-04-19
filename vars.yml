@@ -23,8 +23,8 @@ sql:
     - CREATE TABLE customers (id varchar (16), name varchar (64))
     - CREATE TABLE prices (id varchar (16), name varchar (32), price float (5,2))
   insert:
-    - INSERT INTO customers (id, name) VALUES (123, Red Hat) 
-    - INSERT INTO prices (id, name, price) VALUES (456, AAP, 190.00) 
+    - INSERT INTO customers (id, name) VALUES ('123', 'Red Hat') 
+    - INSERT INTO prices (id, name, price) VALUES ('456', 'AAP', 190.00) 
   select: 
     - SELECT * FROM customers
     - SELECT * FROM prices
