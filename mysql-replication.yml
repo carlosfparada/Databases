@@ -5,6 +5,10 @@
     - vars.yml
   tasks:
 
+    - name: Get primary binlog file name and binlog position
+      community.mysql.mysql_replication:
+        mode: getprimary
+
     - name: Check Replication MySQL databases
       community.mysql.mysql_replication:
         mode: getreplica
