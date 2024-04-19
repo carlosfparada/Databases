@@ -8,7 +8,7 @@
     - name: Delete MySQL databases
       community.mysql.mysql_db:
         name: "{{ databases }}"
-        state: present
+        state: absent
 
     - name: Delete MySQL users
       community.mysql.mysql_user:
