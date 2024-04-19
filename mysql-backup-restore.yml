@@ -28,3 +28,9 @@
         state: import
         #target: all
         target: "{{ dump_file }}"
+
+    - name: Select MySQL tables
+      community.mysql.mysql_query:
+        login_db: "{{ sql.dbname }}"
+        query: "{{ item }}"
+      loop: "{{ sql.select }}"
