@@ -19,12 +19,19 @@ dump_file: /tmp/databases.sql
 
 sql:
   - db: db1
-    create: 
-      - CREATE TABLE customers (id int, name varchar (64))
-      - CREATE TABLE prices (id int, name varchar (32), price float (5,2))
+    create:
+      - sql: CREATE TABLE customers (id int, name varchar (64))
+      - sql: CREATE TABLE prices (id int, name varchar (32), price float (5,2))
     insert:
-      - INSERT INTO customers (id, name) VALUES (456, 'Red Hat') 
-      - INSERT INTO prices (id, price) VALUES (123, 'AAP', '190.00') 
+      - sql: INSERT INTO customers (id, name) VALUES (%s, %s) 
+        values: 
+          - 456
+          - Red Hat
+      - sql: INSERT INTO prices (id, name, price) VALUES (%s, %s, %s) 
+        values: 
+          - 123
+          - AAP
+          - 190.00
     select: 
-      - SELECT * FROM customers
-      - SELECT * FROM prices
+      - sql: SELECT * FROM customers
+      - sql: SELECT * FROM prices

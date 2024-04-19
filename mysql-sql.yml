@@ -4,23 +4,21 @@
   vars_files:
     - vars.yml
   tasks:
+    
+    - name: Create MySQL tables
+      community.mysql.mysql_query:
+        query: "{{ item.sql }}"
+      loop: "{{ sql.create }}"
 
-    - name: Get primary binlog file name and binlog position
-      community.mysql.mysql_replication:
-        mode: getprimary
+    - name: Insert MySQL tables
+      community.mysql.mysql_query:
+        query: "{{ item.sql }}"
+        positional_args: "{{ item.values }}"
+        single_transaction: true
+      loop: "{{ sql.insert }}"
 
-    - name: Start MariaDB replica with connection name primary-1
-      community.mysql.mysql_replication:
-        mode: startreplica
-        connection_name: primary-1
-
-    - name: Check Replication MySQL databases
-      community.mysql.mysql_replication:
-        mode: getreplica
-        login_host: "{{ ansible_host }}"
-        # login_port: 3308
-
-    - name: Change Primary MySQL databases
-      community.mysql.mysql_replication:
-        mode: changeprimary
-        primary_host: "{{ ansible_host }}"
+    
+    - name: Create MySQL tables
+      community.mysql.mysql_query:
+        query: "{{ item.sql }}"
+      loop: "{{ sql.create }}"
