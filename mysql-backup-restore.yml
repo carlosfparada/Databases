@@ -12,6 +12,16 @@
         #target: all
         target: "{{ dump_file }}"
 
+    - name: Delete MySQL databases
+      community.mysql.mysql_db:
+        name: "{{ databases }}"
+        state: absent
+
+    - name: Create MySQL databases
+      community.mysql.mysql_db:
+        name: "{{ databases }}"
+        state: present
+
     - name: Import MySQL databases
       community.mysql.mysql_db:
         name: "{{ databases }}"
