@@ -17,8 +17,7 @@
         single_transaction: true
       loop: "{{ sql.insert }}"
 
-    
-    - name: Create MySQL tables
+    - name: Select MySQL tables
       community.mysql.mysql_query:
         query: "{{ item.sql }}"
       loop: "{{ sql.create }}"
