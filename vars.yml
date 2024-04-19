@@ -14,3 +14,5 @@ users:
 
 databases:
   - db1
+
+dump_file: /tmp/databases.sql

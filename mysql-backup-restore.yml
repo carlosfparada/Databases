@@ -1,44 +1,14 @@
 ---
-- name: MySQL database
+- name: Backup/Restore MySQL database
   hosts: dbserver
   vars_files:
     - vars.yml
   tasks:
 
-    - name: Install MySQL packages
-      ansible.builtin.dnf:
-        name: "{{ packages }}"
-        state: latest
-      become: true
-
-    - name: Start MySQL services
-      ansible.builtin.service:
-        name: "{{ item }}"
-        state: started
-        enabled: yes
-      loop: "{{ services }}"
-      become: true
-
-    - name: Create MySQL users
-      community.mysql.mysql_user:
-        name: "{{ item.name }}"
-        password: "{{ item.password }}"
-        priv: "{{ item.priv }}"
-        host: "{{ item.host }}"
-        state: present
-      loop: "{{ users }}"
-      changed_when: true
-      notify: Restart MySQL services
-
-    - name: Create MySQL databases
+    - name: Dump MySQL databases
       community.mysql.mysql_db:
         name: "{{ databases }}"
-        state: present
+        state: dump
+        #target: all
+        target: "{{ dump_file }}"
 
-  handlers:
-
-    - name: Restart MySQL services
-      ansible.builtin.service:
-        name: "{{ item }}"
-        state: restarted
-      loop: "{{ services }}"

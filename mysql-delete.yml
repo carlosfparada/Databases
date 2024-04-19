@@ -1,0 +1,34 @@
+---
+- name: Delete MySQL database
+  hosts: dbserver
+  vars_files:
+    - vars.yml
+  tasks:
+
+    - name: Delete MySQL databases
+      community.mysql.mysql_db:
+        name: "{{ databases }}"
+        state: present
+
+    - name: Delete MySQL users
+      community.mysql.mysql_user:
+        name: "{{ item.name }}"
+        password: "{{ item.password }}"
+        priv: "{{ item.priv }}"
+        host: "{{ item.host }}"
+        state: absent
+      loop: "{{ users }}"
+
+    - name: Stop MySQL services
+      ansible.builtin.service:
+        name: "{{ item }}"
+        state: stopped
+        enabled: yes
+      loop: "{{ services }}"
+      become: true
+
+    - name: Uninstall MySQL packages
+      ansible.builtin.dnf:
+        name: "{{ packages }}"
+        state: absent
+      become: true
