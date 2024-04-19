@@ -4,23 +4,34 @@
   vars_files:
     - vars.yml
   tasks:
-    
+
+    - name: Drop MySQL tables
+      community.mysql.mysql_query:
+        login_db: "{{ sql.dbname }}"
+        query: "{{ item }}"
+      loop: "{{ sql.drop }}"
+          
     - name: Create MySQL tables
       community.mysql.mysql_query:
         login_db: "{{ sql.dbname }}"
-        query: "{{ item.sql }}"
+        query: "{{ item }}"
       loop: "{{ sql.create }}"
 
     - name: Insert MySQL tables
       community.mysql.mysql_query:
         login_db: "{{ sql.dbname }}"
-        query: "{{ item.sql }}"
-        positional_args: "{{ item.values }}"
+        query: "{{ item }}"
         single_transaction: true
       loop: "{{ sql.insert }}"
 
     - name: Select MySQL tables
       community.mysql.mysql_query:
         login_db: "{{ sql.dbname }}"
-        query: "{{ item.sql }}"
+        query: "{{ item }}"
       loop: "{{ sql.select }}"
+
+    - name: Drop MySQL tables
+      community.mysql.mysql_query:
+        login_db: "{{ sql.dbname }}"
+        query: "{{ item }}"
+      loop: "{{ sql.drop }}"
