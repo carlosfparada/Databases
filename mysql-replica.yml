@@ -10,3 +10,8 @@
         mode: getreplica
         login_host: "{{ ansible_host }}"
         login_port: 3308
+
+    - name: Change Primary MySQL databases
+      community.mysql.mysql_replication:
+        mode: changeprimary
+        primary_host: "{{ ansible_host }}"
