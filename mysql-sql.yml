@@ -7,11 +7,13 @@
     
     - name: Create MySQL tables
       community.mysql.mysql_query:
+        login_db: "{{ sql.dbname }}"
         query: "{{ item.sql }}"
       loop: "{{ sql.create }}"
 
     - name: Insert MySQL tables
       community.mysql.mysql_query:
+        login_db: "{{ sql.dbname }}"
         query: "{{ item.sql }}"
         positional_args: "{{ item.values }}"
         single_transaction: true
@@ -19,5 +21,6 @@
 
     - name: Select MySQL tables
       community.mysql.mysql_query:
+        login_db: "{{ sql.dbname }}"
         query: "{{ item.sql }}"
-      loop: "{{ sql.create }}"
+      loop: "{{ sql.select }}"

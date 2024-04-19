@@ -18,20 +18,20 @@ databases:
 dump_file: /tmp/databases.sql
 
 sql:
-  - db: db1
-    create:
-      - sql: CREATE TABLE customers (id int, name varchar (64))
-      - sql: CREATE TABLE prices (id int, name varchar (32), price float (5,2))
-    insert:
-      - sql: INSERT INTO customers (id, name) VALUES (%s, %s) 
-        values: 
-          - 456
-          - Red Hat
-      - sql: INSERT INTO prices (id, name, price) VALUES (%s, %s, %s) 
-        values: 
-          - 123
-          - AAP
-          - 190.00
-    select: 
-      - sql: SELECT * FROM customers
-      - sql: SELECT * FROM prices
+  dbname: db1
+  create:
+    - sql: CREATE TABLE customers (id int, name varchar (64))
+    - sql: CREATE TABLE prices (id int, name varchar (32), price float (5,2))
+  insert:
+    - sql: INSERT INTO customers (id, name) VALUES (%s, %s) 
+      values: 
+        - 456
+        - Red Hat
+    - sql: INSERT INTO prices (id, name, price) VALUES (%s, %s, %s) 
+      values: 
+        - 123
+        - AAP
+        - 190.00
+  select: 
+    - sql: SELECT * FROM customers
+    - sql: SELECT * FROM prices
