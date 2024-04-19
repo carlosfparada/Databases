@@ -35,7 +35,6 @@
         name: "{{ databases }}"
         state: present
 
-
   handlers:
 
     - name: Restart MySQL services
