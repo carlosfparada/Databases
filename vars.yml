@@ -20,11 +20,8 @@ dump_file: /tmp/databases.sql
 sql:
   dbname: db1
   create:
-    - sql: DROP TABLE customers
-    - sql: DROP TABLE prices
-  # create:
-  #   - sql: CREATE TABLE customers (id varchar (16), name varchar (64))
-  #   - sql: CREATE TABLE prices (id varchar (16), name varchar (32), price float (5,2))
+    - sql: CREATE TABLE customers (id varchar (16), name varchar (64))
+    - sql: CREATE TABLE prices (id varchar (16), name varchar (32), price float (5,2))
   insert:
     - sql: INSERT INTO customers (id, name) VALUES (%s, %s) 
       values: 
@@ -38,3 +35,6 @@ sql:
   select: 
     - sql: SELECT * FROM customers
     - sql: SELECT * FROM prices
+  drop:
+    - sql: DROP TABLE customers
+    - sql: DROP TABLE prices
