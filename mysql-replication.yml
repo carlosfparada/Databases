@@ -1,11 +1,11 @@
 ---
-- name: Get Info MySQL database
+- name: Replication MySQL database
   hosts: dbserver
   vars_files:
     - vars.yml
   tasks:
 
-    - name: Check Replica MySQL databases
+    - name: Check Replication MySQL databases
       community.mysql.mysql_replication:
         mode: getreplica
         login_host: "{{ ansible_host }}"
