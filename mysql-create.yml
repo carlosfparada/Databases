@@ -44,6 +44,7 @@
   
     - name: Get Info MySQL databases
       community.mysql.mysql_info:
+        filter: version, databases
       become: true
       ignore_errors: true
 
