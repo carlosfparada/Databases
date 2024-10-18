@@ -49,7 +49,6 @@
       ignore_errors: true
 
   handlers:
-
     - name: Restart MySQL services
       ansible.builtin.service:
         name: "{{ item }}"
