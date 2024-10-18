@@ -45,7 +45,6 @@
     - name: Get Info MySQL databases
       community.mysql.mysql_info:
       become: true
-      ignore_errors: true
 
   handlers:
     - name: Restart MySQL services
